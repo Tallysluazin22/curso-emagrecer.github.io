@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso de Emagrecimento | Página Oficial</title>
+
+  <style>
+    :root{
+      --bg: #070A12;
+      --bg2:#0B1020;
+      --card:#101A33;
+      --card2:#0E1730;
+      --text:#EAF0FF;
+      --muted:#A9B4D0;
+      --border: rgba(255,255,255,.10);
+      --accent:#22C55E;
+      --accent2:#16A34A;
+      --warning:#F59E0B;
+      --danger:#EF4444;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+    }
+
+    *{ box-sizing:border-box; margin:0; padding:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+    body{
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(34,197,94,.18), transparent 60%),
+                  radial-gradient(1200px 600px at 80% 10%, rgba(96,165,250,.14), transparent 55%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .container{ max-width: 1150px; margin: 0 auto; padding: 24px; }
+
+    /* NAV */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(7,10,18,.65);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 24px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: .2px;
+    }
+    .logo{
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display:grid;
+      place-items:center;
+      font-weight: 1000;
+      color:#06110b;
+      background: linear-gradient(135deg, var(--accent), #60A5FA);
+      box-shadow: 0 10px 28px rgba(0,0,0,.35);
+    }
+    .links{
+      display:flex;
+      gap: 18px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .links a:hover{ color: var(--text); }
+
+    /* BUTTONS */
+    .btn{
+      border: none;
+      cursor: pointer;
+      font-weight: 900;
+      padding: 12px 16px;
+      border-radius: 16px;
+      transition: .2s transform, .2s opacity, .2s box-shadow;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      user-select: none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      opacity: .97;
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #05130b;
+    }
+    .btn-outline{
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .btn-warning{
+      background: linear-gradient(135deg, #F59E0B, #FBBF24);
+      color: #111827;
+    }
+
+    /* HERO */
+    .hero{
+      padding: 56px 0 24px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 26px;
+      align-items: start;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 13px;
+      color: #A7F3D0;
+      background: rgba(34,197,94,.12);
+      border: 1px solid rgba(34,197,94,.25);
+    }
+    .title{
+      margin-top: 14px;
+      font-size: 44px;
+      line-height: 1.05;
+      font-weight: 1000;
+      letter-spacing: -0.8px;
+    }
+    .subtitle{
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+    .hero-actions{
+      margin-top: 18px;
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .bullets{
+      margin-top: 18px;
+      display:grid;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .bullets b{ color: var(--text); }
+
+    /* CARD */
+    .card{
+      background: rgba(16,26,51,.82);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    /* VIDEO */
+    .video-wrap{ display:grid; gap: 12px; }
+    .video{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      min-height: 280px;
+    }
+    .video iframe, .video video{
+      width:100%;
+      height: 330px;
+      display:block;
+      border: 0;
+    }
+    .small{
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+    .form{
+      display:grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .row{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .field{
+      flex: 1;
+      min-width: 220px;
+      display:grid;
+      gap: 6px;
+    }
+    label{
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--muted);
+    }
+    input, select{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(7,10,18,.55);
+      color: var(--text);
+      outline: none;
+    }
+
+    /* SECTIONS */
+    section{ padding: 34px 0; }
+    .section-title{
+      font-size: 26px;
+      font-weight: 1000;
+      margin-bottom: 10px;
+      letter-spacing: -.2px;
+    }
+    .section-sub{
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.55;
+    }
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .item h3{
+      font-size: 16px;
+      font-weight: 1000;
+      margin-bottom: 8px;
+    }
+    .item p{
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    /* OFFER */
+    .offer{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .offer-box{
+      border-radius: 26px;
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(34,197,94,.12), rgba(16,26,51,.88));
+      border: 1px solid rgba(34,197,94,.25);
+    }
+    .price{
+      font-size: 46px;
+      font-weight: 1000;
+      letter-spacing: -1px;
+      margin: 10px 0 6px;
+    }
+    .strike{
+      color: var(--muted);
+      text-decoration: line-through;
+      font-weight: 800;
+    }
+    ul{
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cta{
+      display:grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* COUNTDOWN */
+    .countdown{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .time{
+      flex: 1;
+      min-width: 90px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 10px;
+      text-align:center;
+    }
+    .time .n{
+      font-weight: 1000;
+      font-size: 22px;
+    }
+    .time .t{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    /* FAQ */
+    details{
+      background: rgba(16,26,51,.70);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+    summary{
+      cursor: pointer;
+      font-weight: 1000;
+    }
+    details p{
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    /* WHATSAPP */
+    .whatsapp{
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 60;
+      border-radius: 999px;
+      padding: 12px 14px;
+      background: linear-gradient(135deg, #22C55E, #16A34A);
+      color: #06120b;
+      font-weight: 1000;
+      border: none;
+      cursor:pointer;
+      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+    }
+
+    /* FOOTER */
+    footer{
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      margin-top: 16px;
+    }
+    .footer-row{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .note{
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 950px){
+      .hero{ grid-template-columns: 1fr; }
+      .offer{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .title{ font-size: 36px; }
+      .video iframe, .video video{ height: 240px; }
+      .links{ display:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">E</div>
+        <div>Curso de Emagrecimento</div>
+      </div>
+
+      <div class="links">
+        <a href="#conteudo">Conteúdo</a>
+        <a href="#video">Aula exemplo</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <button class="btn btn-primary" onclick="scrollToId('oferta')">Quero me inscrever</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <div class="hero">
+      <div>
+        <div class="badge">📌 Curso Online • Acesso imediato</div>
+
+        <h1 class="title">
+          Emagreça com rotina e um método simples para aplicar no dia a dia.
+        </h1>
+
+        <p class="subtitle">
+          Treinamento completo para quem quer <b>perder peso com consistência</b>,
+          melhorar hábitos e ter um plano claro.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="scrollToId('video')">Ver aula demonstrativa</button>
+          <button class="btn btn-outline" onclick="scrollToId('conteudo')">Ver conteúdo</button>
+          <button class="btn btn-warning" onclick="scrollToId('oferta')">Ver oferta</button>
+        </div>
+
+        <div class="bullets">
+          <div>✅ Rotina prática</div>
+          <div>✅ Alimentação organizada</div>
+          <div>✅ Treinos e hábitos</div>
+        </div>
+      </div>
+
+      <!-- VIDEO DEMO -->
+      <div class="card video-wrap" id="video">
+        <h2 style="font-size:18px;font-weight:1000">🎥 Demonstração do Curso (Aula Exemplo)</h2>
+
+        <div class="video" id="videoContainer">
+          <!-- Troque o vídeo padrão pelo seu -->
+          <iframe
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Aula demonstrativa"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <p class="small">
+          Aqui você pode inserir uma aula demonstrativa, uma explicação do método ou um trecho real do curso.
+        </p>
+
+        <div class="form">
+          <div class="row">
+            <div class="field">
+              <label>Tipo de vídeo da demonstração</label>
+              <select id="videoType" onchange="changeVideoType()">
+                <option value="youtube" selected>YouTube (link)</option>
+                <option value="vimeo">Vimeo (link)</option>
+                <option value="mp4">MP4 (arquivo)</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Link do vídeo demonstrativo</label>
+              <input id="videoUrl" placeholder="Cole aqui o link do YouTube/Vimeo..." />
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Arquivo MP4 (aula exemplo)</label>
+              <input id="videoFile" type="file" accept="video/mp4" onchange="loadMp4(this)" />
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn btn-outline" onclick="applyVideo()">Aplicar vídeo</button>
+            <button class="btn btn-outline" onclick="resetVideo()">Resetar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <section id="conteudo">
+      <h2 class="section-title">O que você vai aprender</h2>
+      <p class="section-sub">
+        Um passo a passo organizado, do básico ao avançado.
+      </p>
+
+      <div class="grid3">
+        <div class="card item">
+          <h3>📍 Alimentação</h3>
+          <p>Como organizar refeições, reduzir exageros e manter constância sem complicação.</p>
+        </div>
+        <div class="card item">
+          <h3>📍 Rotina</h3>
+          <p>Como criar hábitos, disciplina e uma rotina simples para manter o resultado.</p>
+        </div>
+        <div class="card item">
+          <h3>📍 Treinos</h3>
+          <p>Estratégias de treino e movimento para iniciantes, com adaptação ao seu nível.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section id="depoimentos">
+      <h2 class="section-title">Depoimentos</h2>
+      <p class="section-sub">Exemplos de alunos e resultados.</p>
+
+      <div class="grid2">
+        <div class="card item">
+          <h3>⭐ “Agora eu tenho um plano claro”</h3>
+          <p>“Eu tentava várias coisas e não conseguia manter. Hoje sigo uma rotina que funciona.”</p>
+          <p class="small">— Aluna Camila</p>
+        </div>
+        <div class="card item">
+          <h3>⭐ “Finalmente consegui consistência”</h3>
+          <p>“O curso me ajudou a criar hábitos e parar de desistir no meio do caminho.”</p>
+          <p class="small">— Aluno Rafael</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFER -->
+    <section id="oferta">
+      <h2 class="section-title">Oferta</h2>
+      <p class="section-sub">
+        Inscrição com acesso imediato + bônus.
+      </p>
+
+      <div class="offer">
+        <div class="offer-box">
+          <div class="badge">🔥 Condição especial (tempo limitado)</div>
+
+          <div class="price">R$ 197</div>
+          <div class="small"><span class="strike">de R$ 497</span> • pagamento único</div>
+
+          <div class="countdown" aria-label="Contador">
+            <div class="time">
+              <div class="n" id="dd">00</div>
+              <div class="t">Dias</div>
+            </div>
+            <div class="time">
+              <div class="n" id="hh">00</div>
+              <div class="t">Horas</div>
+            </div>
+            <div class="time">
+              <div class="n" id="mm">00</div>
+              <div class="t">Min</div>
+            </div>
+            <div class="time">
+              <div class="n" id="ss">00</div>
+              <div class="t">Seg</div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <a class="btn btn-primary" id="checkoutBtn" href="https://seu-checkout-aqui.com" target="_blank">
+              Quero entrar no curso
+            </a>
+
+            <button class="btn btn-outline" onclick="openCheckoutModal()">
+              Configurar link do checkout
+            </button>
+
+            <p class="note">🔒 Pagamento seguro • Acesso liberado após confirmação</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:18px;font-weight:1000;margin-bottom:10px">📦 Inclui:</h3>
+          <ul>
+            <li>Módulo 1: Hábitos e rotina</li>
+            <li>Módulo 2: Alimentação organizada</li>
+            <li>Módulo 3: Treinos para iniciantes</li>
+            <li>Módulo 4: Constância e disciplina</li>
+            <li>Módulo 5: Manutenção do resultado</li>
+            <li>Bônus: Cardápios e listas de compras</li>
+          </ul>
+
+          <div style="margin-top:14px;padding:12px;border-radius:16px;border:1px solid rgba(239,68,68,.25);background:rgba(239,68,68,.08)">
+            <b style="color:#fecaca">Garantia de 7 dias</b>
+            <p class="small" style="margin-top:6px">
+              Você pode testar. Se não for para você, solicite reembolso dentro do prazo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-sub">Dúvidas comuns.</p>
+
+      <div style="display:grid;gap:12px">
+        <details>
+          <summary>Como recebo o acesso?</summary>
+          <p>Após o pagamento, você recebe acesso por e-mail e entra na área de membros.</p>
+        </details>
+
+        <details>
+          <summary>Serve para iniciantes?</summary>
+          <p>Sim. O curso foi feito para iniciantes e para quem quer um passo a passo organizado.</p>
+        </details>
+
+        <details>
+          <summary>Posso colocar uma aula demonstrativa?</summary>
+          <p>Sim. Você pode inserir link do YouTube/Vimeo ou carregar um arquivo MP4 com um trecho do curso.</p>
+        </details>
+
+        <details>
+          <summary>O curso substitui orientação médica?</summary>
+          <p>Não. É um treinamento educacional. Para acompanhamento clínico, procure um profissional.</p>
+        </details>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <div>
+          <b>Curso de Emagrecimento</b><br/>
+          <span class="small">© 2026 • Todos os direitos reservados</span>
+        </div>
+        <div class="small">
+          <a href="#">Termos</a> • <a href="#">Privacidade</a> • <a href="#">Contato</a>
+        </div>
+      </div>
+
+      <p class="note">
+        Aviso: Resultados variam de pessoa para pessoa. Este site é informativo e não substitui orientação profissional.
+      </p>
+    </footer>
+  </main>
+
+  <!-- WhatsApp button -->
+  <button class="whatsapp" onclick="openWhatsApp()">WhatsApp</button>
+
+  <!-- Checkout Modal -->
+  <div id="modal" style="
+    position:fixed; inset:0; display:none; place-items:center;
+    background:rgba(0,0,0,.55); z-index:80; padding:18px;">
+    <div style="
+      width:min(520px, 96vw);
+      background:rgba(16,26,51,.95);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    ">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
+        <h3 style="font-size:18px;font-weight:1000">Configurar checkout</h3>
+        <button class="btn btn-outline" style="padding:10px 12px" onclick="closeCheckoutModal()">Fechar</button>
+      </div>
+
+      <p class="small" style="margin-top:10px">
+        Cole o link do seu checkout (Hotmart, Kiwify, Eduzz, Monetizze etc).
+      </p>
+
+      <div style="margin-top:12px; display:grid; gap:10px">
+        <div class="field">
+          <label>Link do checkout</label>
+          <input id="checkoutInput" placeholder="https://..." />
+        </div>
+
+        <button class="btn btn-primary" onclick="saveCheckout()">
+          Salvar link
+        </button>
+
+        <p class="small" id="savedMsg" style="display:none">✅ Link salvo!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Scroll
+    function scrollToId(id){
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+
+    // WhatsApp
+    function openWhatsApp(){
+      // Troque para seu número com DDI e DDD, exemplo: 5511999999999
+      const phone = "5511999999999";
+      const msg = encodeURIComponent("Olá! Quero informações sobre o curso de emagrecimento.");
+      window.open(`https://wa.me/${phone}?text=${msg}`, "_blank");
+    }
+
+    // Video config
+    function changeVideoType(){
+      const type = document.getElementById("videoType").value;
+      const urlInput = document.getElementById("videoUrl");
+      const fileInput = document.getElementById("videoFile");
+
+      if(type === "mp4"){
+        urlInput.disabled = true;
+        fileInput.disabled = false;
+      } else {
+        urlInput.disabled = false;
+        fileInput.disabled = true;
+      }
+    }
+    changeVideoType();
+
+    function sanitizeYouTube(url){
+      if(url.includes("youtu.be/")){
+        const id = url.split("youtu.be/")[1].split(/[?&]/)[0];
+        return `https://www.youtube.com/embed/${id}`;
+      }
+      if(url.includes("watch?v=")){
+        const id = url.split("watch?v=")[1].split(/[?&]/)[0];
+        return `https://www.youtube.com/embed/${id}`;
+      }
+      if(url.includes("/embed/")){
+        return url;
+      }
+      return url;
+    }
+
+    function sanitizeVimeo(url){
+      if(url.includes("player.vimeo.com/video/")) return url;
+      const parts = url.split("/").filter(Boolean);
+      const id = parts[parts.length - 1];
+      return `https://player.vimeo.com/video/${id}`;
+    }
+
+    function applyVideo(){
+      const type = document.getElementById("videoType").value;
+      const url = document.getElementById("videoUrl").value.trim();
+
+      if(type === "mp4"){
+        alert("Selecione um arquivo MP4 para carregar.");
+        return;
+      }
+
+      if(!url){
+        alert("Cole um link do vídeo primeiro.");
+        return;
+      }
+
+      let embedUrl = url;
+      if(type === "youtube") embedUrl = sanitizeYouTube(url);
+      if(type === "vimeo") embedUrl = sanitizeVimeo(url);
+
+      const container = document.getElementById("videoContainer");
+      container.innerHTML = `
+        <iframe
+          src="${embedUrl}"
+          title="Aula demonstrativa"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+
+    function loadMp4(input){
+      const file = input.files[0];
+      if(!file) return;
+
+      const container = document.getElementById("videoContainer");
+      const videoURL = URL.createObjectURL(file);
+
+      container.innerHTML = `
+        <video controls>
+          <source src="${videoURL}" type="video/mp4" />
+          Seu navegador não suporta vídeo MP4.
+        </video>
+      `;
+    }
+
+    function resetVideo(){
+      const container = document.getElementById("videoContainer");
+      container.innerHTML = `
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Aula demonstrativa"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      `;
+      document.getElementById("videoUrl").value = "";
+      document.getElementById("videoFile").value = "";
+    }
+
+    // Checkout modal
+    function openCheckoutModal(){
+      document.getElementById("modal").style.display = "grid";
+      document.getElementById("savedMsg").style.display = "none";
+      const saved = localStorage.getItem("checkout_link");
+      if(saved) document.getElementById("checkoutInput").value = saved;
+    }
+    function closeCheckoutModal(){
+      document.getElementById("modal").style.display = "none";
+    }
+    function saveCheckout(){
+      const link = document.getElementById("checkoutInput").value.trim();
+      if(!link || !link.startsWith("http")){
+        alert("Cole um link válido (começando com http ou https).");
+        return;
+      }
+      localStorage.setItem("checkout_link", link);
+      document.getElementById("checkoutBtn").href = link;
+      document.getElementById("savedMsg").style.display = "block";
+      setTimeout(() => closeCheckoutModal(), 900);
+    }
+
+    // Load checkout saved
+    (function(){
+      const saved = localStorage.getItem("checkout_link");
+      if(saved){
+        document.getElementById("checkoutBtn").href = saved;
+      }
+    })();
+
+    // Countdown (24h a partir do primeiro acesso)
+    (function(){
+      const key = "offer_deadline";
+      let deadline = localStorage.getItem(key);
+
+      if(!deadline){
+        const now = Date.now();
+        deadline = now + (24 * 60 * 60 * 1000);
+        localStorage.setItem(key, String(deadline));
+      } else {
+        deadline = Number(deadline);
+      }
+
+      function tick(){
+        const now = Date.now();
+        let diff = Math.max(0, deadline - now);
+
+        const days = Math.floor(diff / (1000*60*60*24));
+        diff -= days * (1000*60*60*24);
+
+        const hours = Math.floor(diff / (1000*60*60));
+        diff -= hours * (1000*60*60);
+
+        const mins = Math.floor(diff / (1000*60));
+        diff -= mins * (1000*60);
+
+        const secs = Math.floor(diff / 1000);
+
+        document.getElementById("dd").textContent = String(days).padStart(2,"0");
+        document.getElementById("hh").textContent = String(hours).padStart(2,"0");
+        document.getElementById("mm").textContent = String(mins).padStart(2,"0");
+        document.getElementById("ss").textContent = String(secs).padStart(2,"0");
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    })();
+
+    // Close modal on background click
+    document.getElementById("modal").addEventListener("click", (e) => {
+      if(e.target.id === "modal") closeCheckoutModal();
+    });
+  </script>
+</body>
+</html>
